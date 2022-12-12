@@ -75,6 +75,7 @@ describe("swap/getExchangeRates", () => {
     const data = [
       {
         provider: "changelly",
+        providerType: "CEX",
         rateId: "RATE_ID",
         from: "bitcoin",
         to: "ethereum",
@@ -99,6 +100,7 @@ describe("swap/getExchangeRates", () => {
     const expectedExchangeRate: ExchangeRate = {
       magnitudeAwareRate: new BigNumber("140000000000"),
       provider: data[0].provider,
+      providerType: data[0].providerType as ExchangeRate["providerType"],
       rate: new BigNumber(data[0].rate),
       rateId: data[0].rateId,
       toAmount: new BigNumber("70000000000000000"),
@@ -114,6 +116,7 @@ describe("swap/getExchangeRates", () => {
     const data = [
       {
         provider: "changelly",
+        providerType: "CEX",
         from: "bitcoin",
         to: "ethereum",
         amountFrom: "0.005",
@@ -139,6 +142,7 @@ describe("swap/getExchangeRates", () => {
     const expectedExchangeRate: ExchangeRate = {
       magnitudeAwareRate: new BigNumber("133913600000"),
       provider: data[0].provider,
+      providerType: data[0].providerType as ExchangeRate["providerType"],
       rate: new BigNumber(13.39136),
       toAmount: new BigNumber("66956800000000000"),
       tradeMethod: data[0].tradeMethod,

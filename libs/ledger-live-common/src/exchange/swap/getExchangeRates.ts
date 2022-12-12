@@ -61,6 +61,7 @@ const getExchangeRates: GetExchangeRates = async (
       payoutNetworkFees: maybePayoutNetworkFees,
       rateId,
       provider,
+      providerType,
       amountFrom,
       amountTo,
       tradeMethod,
@@ -100,6 +101,7 @@ const getExchangeRates: GetExchangeRates = async (
     const out = {
       magnitudeAwareRate,
       provider,
+      providerType,
       rate,
       rateId,
       toAmount: magnitudeAwareToAmount,

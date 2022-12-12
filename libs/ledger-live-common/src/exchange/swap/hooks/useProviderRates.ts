@@ -168,7 +168,7 @@ export const useProviderRates = ({
         }
       }
 
-      getRates();
+      void getRates();
 
       return () => {
         abort = true;
