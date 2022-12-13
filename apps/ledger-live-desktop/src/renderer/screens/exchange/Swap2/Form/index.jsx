@@ -125,7 +125,6 @@ const SwapForm = () => {
     onNoRates: trackNoRates,
     ...locationState,
   });
-  // console.log("SwapForm -> swapTransaction", swapTransaction);
 
   const exchangeRatesState = swapTransaction.swap?.rates;
   const swapKYC = useSelector(swapKYCSelector);
@@ -400,15 +399,15 @@ const SwapForm = () => {
   const targetCurrency = swapTransaction.swap.to.currency;
 
   const updateSelection = useCallback(
-    payload => {
-      const { navigation } = payload;
-      if (navigation) {
-        // Means a DEX provider is selected
-        setNavigation(navigation);
-      } else {
-        // Means a CEX provider is selected
+    selectedRate => {
+      const { providerType } = selectedRate;
+      if (providerType === "DEX") {
+        setNavigation({ pathname: selectedRate.providerUrl ?? "/platform/1inch-lld", params: {} }); // TODO change when we have populated providerUrl
+      }
+
+      if (providerType === "CEX") {
         setNavigation(null);
-        swapTransaction.swap.updateSelectedRate(payload);
+        swapTransaction.swap.updateSelectedRate(selectedRate);
       }
     },
     [swapTransaction?.swap],
@@ -416,7 +415,6 @@ const SwapForm = () => {
 
   // We check if a decentralized swap is available to conditionnaly render an Alert below.
   // All Ethereum related currencies are considered available
-  // TODO delete this
   const decentralizedSwapAvailable = useMemo(() => {
     if (sourceAccount && targetAccount) {
       const sourceMainAccount = getMainAccount(sourceAccount, sourceParentAccount);
