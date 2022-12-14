@@ -228,8 +228,6 @@ Coming soon... :construction:
 
 ### Detox Recorder
 
-### Screenshot Comparison
-
 ---
 
 ---
